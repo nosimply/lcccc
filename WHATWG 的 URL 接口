@@ -1,4 +1,15 @@
 //关于最新的node.js如何解析url
 //在使用parse时告诉我已经没法用了...
 //所有只能用新的WHATWG 的 URL 接口，但是查阅大量的文件，反复查看node.js的官方文档，还是报错
-//最后无奈只能安卓这个语言的设定去推敲。代码如下
+//最后无奈只能按照这个语言的设定去推敲。
+//代码如下
+const URL = require('url').URL;
+var url=require('url');
+var controter=require('./controtel');
+module.exports={
+    start(server){
+        server.on('request',function(req,res){
+           var urls=req.url;
+           const myUrl = new URL(urls,"http://127.0.0.1:8080");
+           var urls =myUrl.pathname;//和parse方法一样获取pathname
+          var myparam=myUrl.searchParams.get('id');//searchparam.get获取数组里的id
