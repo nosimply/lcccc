@@ -1,0 +1,10 @@
+我本来想做一个session的令牌，本来想的很简单
+就是在登录后加一个session值，然后在基础controller加一个判断
+我之前已经把session写进数据库里面了，代码是我之前写的，我没有多想就copy了
+结果session的变量写不进数据库里面
+我用了2天不停的测试不停的查找错误
+直到我看到phpinfo输出的session信息
+Local Value Master Value这2个值的session.save_path
+Local value 是当前目录中的设置，这个值会覆盖Master Value中对应的值
+而我当时好像是把local value 给关掉的
+解决办法就是打开并把php.ini里面2个session的存储目录变成一个
